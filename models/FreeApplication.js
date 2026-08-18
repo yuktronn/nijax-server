@@ -45,13 +45,11 @@ const freeApplicationSchema = new mongoose.Schema(
     requestedService: {
       type: String,
       required: [true, 'Service selection is required'],
-      enum: ['Website', 'Micro CRM', 'SEO', 'Digital Marketing', 'Meta Ads'],
+      enum: ['Social Media Marketing', 'Digital Marketing', 'Website', 'Micro CRM', 'SEO', 'Meta Ads'],
     },
     whySelected: {
       type: String,
-      required: [true, 'Please explain why YUKTRON should select your business'],
       trim: true,
-      minlength: [20, 'Please provide more details (minimum 20 characters)'],
     },
     additionalInformation: {
       type: String,

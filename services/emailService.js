@@ -317,7 +317,7 @@ export const sendFreeApplicationAdminNotification = async (appData) => {
 
         <!-- Textarea Fields Detailed Review -->
         <h3 style="font-size: 14px; font-weight: 700; color: #ffffff; margin: 25px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">Why Selected Opportunity Matters</h3>
-        <div style="background-color: #05080c; border: 1px solid #1e293b; border-radius: 6px; padding: 15px; font-size: 13px; color: #d1d5db; line-height: 1.6; white-space: pre-wrap; margin-bottom: 20px;">${whySelected}</div>
+        <div style="background-color: #05080c; border: 1px solid #1e293b; border-radius: 6px; padding: 15px; font-size: 13px; color: #d1d5db; line-height: 1.6; white-space: pre-wrap; margin-bottom: 20px;">${whySelected || 'N/A'}</div>
 
         ${additionalInformation ? `
         <h3 style="font-size: 14px; font-weight: 700; color: #ffffff; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px;">Additional Information</h3>

@@ -57,12 +57,10 @@ export const submitFreeApplication = async (req, res) => {
     if (!location || location.trim().length === 0) {
       return res.status(400).json({ success: false, message: 'City/Location is required.' });
     }
-    if (!requestedService || !['Website', 'Micro CRM', 'SEO', 'Digital Marketing', 'Meta Ads'].includes(requestedService)) {
+    if (!requestedService || !['Social Media Marketing', 'Digital Marketing', 'Website', 'Micro CRM', 'SEO', 'Meta Ads'].includes(requestedService)) {
       return res.status(400).json({ success: false, message: 'Please select a valid service pathway.' });
     }
-    if (!whySelected || whySelected.trim().length < 20) {
-      return res.status(400).json({ success: false, message: 'Explanation for selection must be at least 20 characters.' });
-    }
+    // whySelected is optional now
 
     // 3. In-memory Rate Limiting
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
@@ -121,7 +119,7 @@ export const submitFreeApplication = async (req, res) => {
       website: website || '',
       socialLinks: socialLinks || '',
       requestedService,
-      whySelected,
+      whySelected: whySelected || '',
       additionalInformation: additionalInformation || '',
       status: 'PENDING'
     });
