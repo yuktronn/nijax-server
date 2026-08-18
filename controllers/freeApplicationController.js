@@ -108,8 +108,15 @@ export const submitFreeApplication = async (req, res) => {
       });
     }
 
+    // Generate unique application ID (e.g. Y1-2608-A9FD)
+    const date = new Date();
+    const yearMonth = date.toISOString().slice(2, 7).replace('-', '');
+    const randomStr = Math.random().toString(36).substring(2, 6).toUpperCase();
+    const applicationId = `Y1-${yearMonth}-${randomStr}`;
+
     // 5. Create Database Entry
     const newApplication = await FreeApplication.create({
+      applicationId,
       fullName,
       email,
       phone,
@@ -131,7 +138,8 @@ export const submitFreeApplication = async (req, res) => {
         fullName,
         email,
         businessName,
-        requestedService
+        requestedService,
+        applicationId
       );
     } catch (emailError) {
       console.error('[FreeApplicationController] Transactional emails dispatch failed, but application was saved in database:', emailError.message);
@@ -140,7 +148,8 @@ export const submitFreeApplication = async (req, res) => {
     // 7. Success Response
     return res.status(201).json({
       success: true,
-      message: 'Application submitted successfully.'
+      message: 'Application submitted successfully.',
+      applicationId
     });
 
   } catch (error) {

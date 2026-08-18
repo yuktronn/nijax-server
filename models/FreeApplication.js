@@ -2,6 +2,12 @@ import mongoose from 'mongoose';
 
 const freeApplicationSchema = new mongoose.Schema(
   {
+    applicationId: {
+      type: String,
+      required: [true, 'Application ID is required'],
+      unique: true,
+      trim: true,
+    },
     fullName: {
       type: String,
       required: [true, 'Full name is required'],
